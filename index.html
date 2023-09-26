@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Nest</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <style>
+        /* Custom CSS for enhanced design */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+        padding: 15px 0;
+        background: linear-gradient(135deg, #ee0101, #000000); /* Gradient background */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    }
+
+    .navbar-brand {
+        font-size: 24px; /* Increase the font size of the brand name */
+        font-weight: bold;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: #fff;
+        transition: color 0.3s; /* Smooth color transition on hover */
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: #357ae8; /* Change link color on hover */
+    }
+
+    .form-control {
+        border-radius: 30px; /* Rounded search input field */
+        transition: width 0.3s;
+    }
+
+    /* Optional: Add some padding and spacing to the search form */
+    .navbar .form-inline {
+        margin-right: 15px;
+    }
+
+        .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s;
+        height: 100%; /* Set a fixed height for the card */
+        border: 2px solid #ccc;
+
+    }
+
+    .card-img-top {
+        height: 200px; /* Set the desired height for the card image */
+        object-fit: cover; /* Ensure the image covers the entire height */
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            /* border-color: #e70013; */
+            background-color: #ffffff;
+            
+        }
+
+        .btn-primary {
+            background-color: #4285f4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ae8;
+        }
+
+
+        .premium-icon {
+    background-color: #ff9800; /* Premium icon background color */
+    color: #fff; /* Premium icon text color */
+    padding: 2px 8px; /* Adjust padding as needed */
+    border-radius: 5px; /* Rounded corners for the premium icon */
+    font-weight: bold; /* Bold text for the premium icon */
+    position: absolute; /* Position the premium icon within the card */
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+}
+
+.navbar-nav .nav-item .nav-link {
+    margin: 0 10px; /* Adjust the margin as needed */
+}
+
+footer {
+            background-color: #333; /* Footer background color */
+            color: #fff; /* Text color */
+            text-align: center; /* Center-align the text */
+            padding: 20px 0; /* Add some vertical padding */
+        }
+
+        .footer-social-icons {
+            margin-top: 20px; /* Add margin to the social media icons */
+        }
+
+        .footer-social-icons a {
+            color: #fff; /* Icon color */
+            font-size: 24px; /* Icon size */
+            margin-right: 15px; /* Add margin between icons */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .footer-social-icons a:hover {
+            color: #357ae8; /* Change icon color on hover */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">App Nest</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div style="margin-left: 100px;" class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Apps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Move the search form to the right side -->
+            <form class="form-inline ml-auto">
+                <input style="width: 450px;" class="form-control mr-sm-2" type="search" placeholder="Search for an app..." aria-label="Search" id="searchInput">
+                <!-- You can add a search button if needed -->
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+            </form>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+      
+    </div>
+
+    <div class="container mt-4">
+      
+
+        <div class="row" id="app-container">
+            <!-- App cards will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Sample JSON data (replace with your data.json)
+        const jsonData = [
+        {
+    "name": "Blood Mate",
+    "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+    "image": "blood_mate_banner.jpg",
+    "download_link": "#",
+    "share_link": "#",
+    "google_play_link": "#",
+    "isPremium": true
+},
+            {
+                "name": "Asphalt 9: Legends",
+                "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+                "image": "asphalt_9.jpg",
+                "download_link": "#",
+                "share_link": "#",
+                "google_play_link": "#"
+            },
+            {
+                "name": "True Caller",
+                "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+                "image": "truecaller.jpg",
+                "download_link": "#",
+                "share_link": "#",
+                "google_play_link": "#"
+            },{
+                "name": "Blood Mate",
+                "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+                "image": "blood_mate_banner.jpg",
+                "download_link": "#",
+                "share_link": "#",
+                "google_play_link": "#"
+            },
+            {
+                "name": "Blood Mate",
+                "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+                "image": "blood_mate_banner.jpg",
+                "download_link": "#",
+                "share_link": "#",
+                "google_play_link": "#"
+            },
+            {
+                "name": "Sandwip Helpline",
+                "description": "Blood Mate: Where heroes unite, and lives are saved. Donate, connect, make a difference!",
+                "image": "blood_mate_banner.jpg",
+                "download_link": "#",
+                "share_link": "#",
+                "google_play_link": "#"
+            },
+            // Add more app data entries as needed
+        ];
+
+        // Function to filter and display app cards based on the search query
+        function filterAppCards(searchQuery) {
+            const appContainer = document.getElementById('app-container');
+            appContainer.innerHTML = ''; // Clear existing cards
+
+            jsonData.forEach(app => {
+    const appCard = document.createElement('div');
+    appCard.classList.add('col-md-4', 'mb-4');
+    appCard.innerHTML = `
+        <div class="card">
+            <img src="${app.image}" class="card-img-top" alt="${app.name}">
+            <div class="card-body">
+                <h5 class="card-title">${app.name}</h5>
+                <p class="card-text">${app.description}</p>
+                <a href="${app.download_link}" class="btn btn-primary">Download</a>
+                <a href="#" class="btn btn-secondary">Share</a>
+                <a href="#" class="btn btn-success">Google Play</a>
+                ${app.isPremium ? '<span class="premium-icon">Premium</span>' : ''} <!-- Add this line for premium apps -->
+            </div>
+        </div>
+    `;
+    appContainer.appendChild(appCard);
+});
+
+        }
+
+        // Event listener for the search input
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchQuery = this.value.trim();
+            filterAppCards(searchQuery);
+        });
+
+        // Initial loading of app cards
+        filterAppCards('');
+    </script>
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; 2023 App Nest. All rights reserved.</p>
+            </div>
+            <div class="social_media col-md-6">
+                <!-- Social Media Icons with margin -->
+                <a href="#" class="text-white mr-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
+                
+                <!-- Privacy Policy Link -->
+                <!-- <a href="/privacy-policy" class="text-white">Privacy Policy</a> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
